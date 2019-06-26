@@ -18,11 +18,12 @@
     "request": "^2.83.0"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "dotenv": "^5.0.0",
     "ejs": "^2.5.7",
-    "express": "^4.16.2",
+    "express": "^4.17.1",
     "express-session": "^1.16.2",
     "express-validator": "^6.0.1",
     "flash": "^1.1.0",
@@ -30,6 +31,6 @@
     "passport": "^0.4.0",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.32.6"
+    "sequelize": "^5.0.0-0"
   }
 }
