@@ -6,6 +6,7 @@ const path = require("path");
 
 
  const logger = require('morgan');
+ console.log(process.env.DATABASE_URL) 
 
 module.exports = {
   init(app, express){

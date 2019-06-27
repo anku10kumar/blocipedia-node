@@ -1,12 +1,13 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require('passport');
+const sendGridEmail = require ("../assets/sendgrid/email.js")
 
 module.exports = {
     signup(req, res, next) {
         res.render('users/signup');
       },
       create(req, res, next){
-        
+
         let newUser = {
           username: req.body.username,
           email: req.body.email,
@@ -15,7 +16,6 @@ module.exports = {
         };
         userQueries.createUser(newUser, (err,user) => {
           if(err) {
-            console.log(err);
             req.flash('error',err);
             res.redirect('/users/signup');
           } else{
@@ -23,6 +23,7 @@ module.exports = {
             passport.authenticate('local')(req, res, () => {
               req.flash('notice','Sign in successful');
               res.redirect('/');
+              sendGridEmail.createEmail(newUser);
             })
           }
         });
