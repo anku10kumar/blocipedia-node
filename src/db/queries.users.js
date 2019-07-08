@@ -1,4 +1,4 @@
-const User = require('./models').User;
+const User = require('./models').Users;
 const bcrypt = require('bcryptjs');
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
             callback(null, user);
         })
         .catch((err) => {
-            
+
             callback(err);
         })
     }

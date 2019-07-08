@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "faker": "^4.1.0",
     "jasmine": "^3.0.0",
     "request": "^2.83.0"
   },
@@ -24,15 +25,18 @@
     "body-parser": "^1.19.0",
     "brcypt": "^1.0.1",
     "dotenv": "^5.0.0",
-    "ejs": "^2.5.7",
+    "ejs": "^2.6.2",
     "express": "^4.17.1",
+    "express-flash": "git://github.com/RGBboy/express-flash.git",
     "express-session": "^1.16.2",
-    "express-validator": "^6.0.1",
+    "express-validator": "^6.1.1",
     "flash": "^1.1.0",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^5.0.0-0"
+    "sequelize": "^5.0.0-0",
+    "validator": "^11.1.0"
   }
 }
