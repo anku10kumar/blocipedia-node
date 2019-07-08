@@ -11,6 +11,6 @@ text: 'Welcome!',
  html: '<strong>Thank you for signing up with Blocipedia. This is an email confirmation.</strong>',
 
 };
-sgMail.send(msg);
+sgMail.send(msg)
 }
 }
