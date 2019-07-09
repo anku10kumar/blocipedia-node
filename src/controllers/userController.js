@@ -17,7 +17,7 @@ module.exports = {
 
         userQueries.createUser(newUser, (err,user) => {
           if(err) {
-            console.log(err);
+
             req.flash('error',err);
             res.redirect('/users/signup');
           } else {
@@ -49,6 +49,24 @@ signOut(req, res, next){
   req.logout();
   req.flash("notice", "You've successfully signed out!");
   res.redirect("/");
-}
+},
+
+show(req, res, next){
+
+   // #1
+    userQueries.getUser(req.params.id, (err, result) => {
+
+   // #2
+      if(err || result.user === undefined){
+        req.flash("notice", "No user found with that ID.");
+        res.redirect("/");
+      } else {
+
+   // #3
+        res.render("users/show", {...result});
+      }
+    });
+  }
+
 
 }
