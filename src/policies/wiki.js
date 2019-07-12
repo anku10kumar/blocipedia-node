@@ -2,23 +2,13 @@ const ApplicationPolicy = require("./application");
 
 module.exports = class WikiPolicy extends ApplicationPolicy {
 
-  new() {
-    return this._isStandard();
-  }
+    show(){
+        return this._isAdmin || this.isPremiumOwner
+    }
 
-  create() {
-    return this.new();
-  }
+    edit(){
+        return this.show
+    }
 
-  edit() {
-    return this._isStandard();
-  }
 
-  update() {
-    return this.edit();
-  }
-
-  destroy() {
-    return this.update();
-  }
 }
