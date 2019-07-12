@@ -36,7 +36,7 @@ module.exports = {
           model: "Users",
           key: "id",
           as: "userId"
-        }
+        },
       }
 
     });
