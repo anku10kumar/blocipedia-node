@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+
+    <% include ../static/partials/navbar.ejs %>
+
+    <main class="container">
+
+      <% include ../static/partials/messages.ejs %>
+
+      <section class="text-center">
+      <ion-icon name="paper-plane" style="font-size: 150px;"></ion-icon>
+      </section>
+
+      <section class="border-info rounded p-3 mb-2 bg-secondary text-white text-center">
+      <h1>Upgrade to a Premium account</h1>
+      <a href="/users/<%= currentUser.id %>/stripe">
+        <button type="submit" class="btn btn-info btn-lg">Upgrade Account</button>
+      </a>
+      </section>
+
+      <section class="border-info rounded p-3 mb-2 bg-secondary text-white text-center">
+      <h1>Downgrade to a Standard account</h1>
+      <form action="/users/demote" method="POST">
+        <div>
+          <button type="submit" class="btn btn-info btn-lg">Downgrade Account</button>
+        </div>
+      </form>
+      </section>
+
+    </main>
+    <% include ../static/partials/baseScript.ejs %>
+  <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+
+  </body>
+</html>

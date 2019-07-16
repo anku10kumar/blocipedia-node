@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+
+    <% include ../static/partials/navbar.ejs %>
+
+    <main class="container text-center">
+
+      <% include ../static/partials/messages.ejs %>
+
+      <ion-icon name="happy" style="font-size: 150px;""></ion-icon>
+      <h1><%= `${user.name}'s Profile` %></h1>
+      <a href="/users/<%= user.id %>/upgrade">
+        <button type="submit" class="btn btn-info btn-lg">Account Settings</button>
+      </a>
+
+
+
+    </main>
+
+    <% include ../static/partials/baseScript.ejs %>
+
+  <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+
+  </body>
+</html>

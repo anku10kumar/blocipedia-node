@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+
+  <body>
+    <% include ../static/partials/navbar.ejs %>
+
+    <main class="main-container">
+      <% include ../static/partials/messages.ejs %>
+
+      <h1><%= currentUser.name %></h1>
+
+      <form action="/users/<%= currentUser.id %>/charge" method="POST" id="payment-form">
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key= "pk_test_XlqH41e2uHCfpfzh4nxfTHf000lAEl7jU0"
+            data-amount="1500"
+            data-name="Demo Site"
+            data-description="Upgrade To Premium Membership"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto">
+        </script>
+    </form>
+
+
+    </main>
+    <% include ../static/partials/baseScript.ejs %>
+
+  </body>

@@ -16,21 +16,33 @@
 
         <header style="text-align: center;" class="jumbotron my-4">
           <h1 class="display-3">Welcome to Blocipedia</h1>
+          <ion-icon name="apps" style="font-size: 80px;"></ion-icon>
           <p class="lead">An application for users to create, collaborate, and share wikis.</p>
-          <a href="/users/signup" class="btn btn-primary btn-lg">Sign Up</a>
+          <a href="/users/signup" class="btn btn-secondary btn-lg">Sign Up</a>
         </header>
 
 
-        <section class="row text-center">
+        <section class="row text-left">
 
-          <section class="col-md-6">
+          <section class="col-sm-6 border border-white rounded p-3 mb-2 bg-info text-white">
+            <ion-icon name="people" style= "font-size: 75px;"></ion-icon>
             <h4 class="card-title">Free Plan</h4>
-            <p class="card-text">Create as many public wikis as you want.</p>
+            <p class="card-text"> <ion-icon name="checkmark"></ion-icon> You can create 4 wikis per month</p>
+            <p class="card-text"> <ion-icon name="checkmark"></ion-icon> Ability to create public wikis, but no private wikis.</p>
+            <p class="card-text"> <ion-icon name="checkmark"></ion-icon> Limited access to technical support team.</p>
+
+
           </section>
 
-          <section class="col-md-6">
+
+          <section class="col-sm-6 border border-white rounded p-3 mb-2 bg-info text-white">
+            <ion-icon name="logo-usd" style= "font-size: 60px;"></ion-icon>
             <h4 class="card-title">Premium Plan</h4>
-            <p class="card-text">Create private wikis!</p>
+            <p class="card-text"> <ion-icon name="checkmark"></ion-icon> You can create as many wikis as you want.</p>
+            <p class="card-text"> <ion-icon name="checkmark"></ion-icon> Create private wikis!</p>
+            <p class="card-text"> <ion-icon name="checkmark"></ion-icon> Full 24/7 access to our teachnical support team.</p>
+
+
           </section>
 
 
@@ -43,5 +55,6 @@
 
       <% include ./partials/baseScript.ejs %>
 
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     </body>
 </html>

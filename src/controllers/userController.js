@@ -1,6 +1,8 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require('passport');
 const sendGridEmail = require ("../assets/sendgrid/email.js")
+const secretKey = process.env.SECRET_KEY;
+const stripe = require ('stripe')(secretKey);
 
 module.exports = {
     signup(req, res, next) {
@@ -63,10 +65,78 @@ show(req, res, next){
       } else {
 
    // #3
-        res.render("users/show", {...result});
+        res.render("users/profile", {...result});
       }
     });
-  }
+  },
+
+  upgradeForm(req, res, next){
+     res.render('users/upgrade');
+   },
+   stripeForm(req, res, next){
+     res.render('users/stripe')
+   },
+   promoteUser(req, res, next){
+     if(req.user.role === 0){
+       userQueries.promoteUser(req, (err, user) => {
+         if(err){
+           req.flash('error', err);
+           res.redirect('users/upgrade');
+         } else {
+           req.flash('notice', "You've successfully upgraded your account to premium");
+           res.redirect('/');
+         }
+       });
+     } else {
+       req.flash('notice', "You are not able to upgraded to premium");
+       res.redirect('/');
+     }
+   },
+   demoteUser(req, res, next){
+     if(req.user.role === 1){
+       userQueries.demoteUser(req, (err, user) => {
+         if(err){
+           req.flash('error', err);
+           res.redirect('users/upgrade');
+         } else {
+           req.flash('notice', "You've successfully downgraded your account to standard");
+           res.redirect('/');
+         }
+       });
+     } else {
+       req.flash('notice', "You are not able to downgrade to standard");
+       res.redirect('/');
+     }
+   },
+   chargeUser(req, res, next){
+
+     stripe.customers.create({
+       email: req.body.stripeEmail,
+       source: req.body.stripeToken
+     })
+     .then((customer) => {
+       stripe.charges.create({
+         amount: 1500,
+         currency: 'usd',
+         customer: customer.id,
+         description:'Premium Membership Upgrade'
+       });
+     })
+     .then((charge) => {
+       userQueries.promoteUser(req, (err, user) => {
+         if(err){
+           req.flash('error', err);
+           res.redirect('users/upgrade');
+         } else {
+           req.flash('notice', "You've successfully upgraded your account to premium");
+           res.redirect('/');
+         }
+       });
+     })
+   }
+
+
+
 
 
 }
