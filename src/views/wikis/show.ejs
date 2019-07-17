@@ -11,6 +11,7 @@
 
       <h1><%= wiki.title %></h1>
       <h2><%= wiki.private ? 'Private' : 'Public' %></h2>
+
       <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
 
       <% if (currentUser && (currentUser.isOwner(wiki.userId) || currentUser.isAdmin())) { %>
@@ -20,7 +21,7 @@
   <% } %>
 
 
-      <p><%= wiki.body %></p>
+      <p><%- wiki.body %></p>
     </main>
 
     <% include ../static/partials/baseScript.ejs %>
