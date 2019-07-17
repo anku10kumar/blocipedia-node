@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     private: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
+      allowNull: false
+
     },
     userId: {
       type: DataTypes.INTEGER,
@@ -26,5 +26,12 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "CASCADE"
     });
   };
+
+  Wiki.addScope("allPrivatelyOwned", (userId) => {
+   return {
+     where: {userId: userId, private: true},
+     order: [["createdAt", "DESC"]]
+   }
+ });
   return Wiki;
 };

@@ -3,6 +3,7 @@ const passport = require('passport');
 const sendGridEmail = require ("../assets/sendgrid/email.js")
 const secretKey = process.env.SECRET_KEY;
 const stripe = require ('stripe')(secretKey);
+const wikiQueries = require("../db/queries.wikis.js");
 
 module.exports = {
     signup(req, res, next) {
@@ -93,21 +94,22 @@ show(req, res, next){
      }
    },
    demoteUser(req, res, next){
-     if(req.user.role === 1){
-       userQueries.demoteUser(req, (err, user) => {
-         if(err){
-           req.flash('error', err);
-           res.redirect('users/upgrade');
-         } else {
-           req.flash('notice', "You've successfully downgraded your account to standard");
-           res.redirect('/');
-         }
-       });
-     } else {
-       req.flash('notice', "You are not able to downgrade to standard");
-       res.redirect('/');
-     }
-   },
+      if(req.user.role === 1){
+        userQueries.demoteUser(req, (err, user) => {
+          if(err){
+            req.flash('error', err);
+            res.redirect('users/upgrade');
+          } else {
+            wikiQueries.demoteWikis(req);
+            req.flash('notice', "You've successfully downgraded your account to standard");
+            res.redirect('/');
+          }
+        });
+      } else {
+        req.flash('notice', "You are not able to downgrade to standard");
+        res.redirect('/');
+      }
+    },
    chargeUser(req, res, next){
 
      stripe.customers.create({

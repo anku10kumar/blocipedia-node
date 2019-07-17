@@ -12,17 +12,24 @@
 
       <h1>New Wiki</h1>
 
-      <form action="/wikis/create" method="post">
-        <div class="form-group">
-          <label for="title">Wiki title</label>
-          <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
-        </div>
-        <div class="form-group">
-          <label for="body">Description</label>
-          <textarea rows="4" class="form-control" name="body" placeholder="Enter Description"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      <form action="/wikis/<%= currentUser.isPremium()|| currentUser.isAdmin() ? 'createPrivate' : 'create' %>" method="post">
+   <div class="form-group">
+     <label for="title">Wiki title</label>
+     <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
+   </div>
+   <div class="form-group">
+     <label for="body">Description</label>
+     <textarea rows="4" class="form-control" name="body" placeholder="Enter Description"></textarea>
+   </div>
+   <% if(currentUser.isPremium() || currentUser.isAdmin()){ %>
+     <div>
+       <label for="private">Make Wiki Private</label>
+       <input type="radio" name="private" value="true"> Private
+       <input type="radio" name="private" value="false" checked> Public
+     </div>
+   <% } %>
+   <button type="submit" class="btn btn-primary">Submit</button>
+ </form>
 
     </main>
 

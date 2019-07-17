@@ -10,16 +10,31 @@
 
 
       <h1>Wikis</h1>
-      <a href="/wikis/new" class="btn btn-primary btn-lg">New Wiki</a>
+            <% if(currentUser) { %>
+              <a href="/wikis/new" class="btn btn-primary btn-lg">New Wiki</a>
+              <% } %>
 
-      <ul class="list-group">
+            <h2> Public Wikis </h2>
 
-        <% wikis.forEach((wiki) => { %>
-          <li class="list-group-item">
-            <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-          </li>
-        <% }) %>
-      </ul>
+            <ul>
+              <% result.publicWikis.forEach((wiki) => {%>
+                <li>
+                  <a href="/wikis/<%= wiki.id%>"><%= wiki.title %></a>
+                </li>
+                <% }) %>
+            </ul>
+
+            <% if(currentUser && result.privateWikis.length != 0){ %>
+              <h2>Private Wikis</h2>
+
+              <ul>
+                <% result.privateWikis.forEach((wiki) => { %>
+                  <li>
+                    <a href="/wikis/<%= wiki.id%>"><%= wiki.title %></a>
+                  </li>
+                <% }) %>
+              </ul>
+            <% } %>
 
     </main>
   </body>
